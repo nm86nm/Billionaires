@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mnp.billionaires.common.Resource
 import com.mnp.billionaires.domain.use_case.get_bilionaires.GetBillionairesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@HiltViewModel
 class BillionaireListViewModel @Inject constructor(
     private val getBillionairesUseCase: GetBillionairesUseCase
 ): ViewModel() {

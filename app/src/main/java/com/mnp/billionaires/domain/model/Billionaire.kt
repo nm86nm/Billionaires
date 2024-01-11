@@ -1,12 +1,12 @@
 package com.mnp.billionaires.domain.model
 
 data class Billionaire(
-    val age: Int,
-    val country_territory: String,
-    val id: Int,
+    val age: String,
+    val countryterritory: String,
+    val id: String,
     val industry: String,
     val name: String,
     val networth: String,
-    val rank: Int,
+    val rank: String,
     val source: String
 )
