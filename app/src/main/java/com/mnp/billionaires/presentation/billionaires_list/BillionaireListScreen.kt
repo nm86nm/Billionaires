@@ -25,8 +25,8 @@ fun BillionaireListScreen(
     
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.billionaires){
-                Text(text = "Hello World! 202401091836")
+            items(state.billionaires){billionaire ->
+                BillionaireListItem(billionaire = billionaire)
             }
         }
         
