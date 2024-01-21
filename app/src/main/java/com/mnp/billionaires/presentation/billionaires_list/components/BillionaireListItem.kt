@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.mnp.billionaires.domain.model.Billionaire
@@ -26,9 +27,14 @@ fun BillionaireListItem(
         horizontalArrangement = Arrangement.SpaceBetween
     ){
         Text(
-            text = "${billionaire.rank}. ${billionaire.name} ${billionaire.networth}",
+            text = "${billionaire.rank}. ${billionaire.name}",
             style = MaterialTheme.typography.bodyLarge,
             overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = billionaire.networth,
+            style = MaterialTheme.typography.bodyLarge,
+            textAlign = TextAlign.End
         )
     }
 }

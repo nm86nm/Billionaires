@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.mnp.billionaires.presentation.billionaire_description.BillionaireDescriptionScreen
 import com.mnp.billionaires.presentation.billionaires_list.BillionaireListScreen
 import com.mnp.billionaires.presentation.ui.theme.BillionairesTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +26,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                     BillionaireListScreen()
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.BillionaireListScreen.route
+                    ){
+                        composable(route = Screen.BillionaireListScreen.route){
+                            BillionaireListScreen(navController)
+                        }
+                        composable(route = Screen.BillionaireDescriptionScreen.route + "/{name}"){
+                            BillionaireDescriptionScreen()
+                        }
+                    }
                 }
             }
         }
