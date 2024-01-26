@@ -10,6 +10,6 @@ interface BillionaireApi {
     @GET("billionaire.json")
     suspend fun getBillionaires(): List<BillionaireDto>
 
-    @GET("/description/{name}.json")
+    @GET("description/{name}.json")
     suspend fun getBillionaireById(@Path("name") billionaireId: String): BillionaireDescriptionDto
 }

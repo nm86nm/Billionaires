@@ -19,12 +19,12 @@ import com.mnp.billionaires.domain.model.Billionaire
 @Composable
 fun BillionaireListItem(
     billionaire: Billionaire,
-    //onItemClick: (Billionaire) -> Unit
+    onItemClick: (Billionaire) -> Unit
 ) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
-            // .clickable { onItemClick(billionaire) }
+            .clickable { onItemClick(billionaire) }
             .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ){

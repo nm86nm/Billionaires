@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mnp.billionaires.common.Resource
 import com.mnp.billionaires.domain.use_case.get_billionaire.GetBillionaireUseCase
-import com.mnp.billionaires.presentation.billionaires_list.BillionaireListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -22,12 +21,12 @@ class BillionaireDescriptionViewModel @Inject constructor(
     val state: State<BillionaireDescriptionState> = _state
 
     init {
-        savedStateHandle.get<String>("billionaireId")?.let { billionaireId ->
-            getBillionaire(billionaireId)
+        savedStateHandle.get<String>("name")?.let { name ->
+            getBillionaire(name)
         }
     }
-    private fun getBillionaire(billionaireId: String){
-        getBillionaireUseCase(billionaireId).onEach { result ->
+    private fun getBillionaire(name: String){
+        getBillionaireUseCase(name).onEach { result ->
             when(result){
                 is Resource.Loading -> {
                     _state.value = BillionaireDescriptionState(isLoading = true)

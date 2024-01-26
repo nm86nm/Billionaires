@@ -6,5 +6,5 @@ import com.mnp.billionaires.domain.model.BillionaireDescription
 
 interface BillionaireRepository {
     suspend fun getBillionaires(): List<BillionaireDto>
-    suspend fun getBillionaireById(id: String): BillionaireDescriptionDto
+    suspend fun getBillionaireById(name: String): BillionaireDescriptionDto
 }

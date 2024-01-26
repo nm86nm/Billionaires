@@ -13,7 +13,7 @@ class BillionaireRepositoryImpl @Inject constructor(
         return api.getBillionaires()
     }
 
-    override suspend fun getBillionaireById(id: String): BillionaireDescriptionDto {
-        return api.getBillionaireById(id)
+    override suspend fun getBillionaireById(name: String): BillionaireDescriptionDto {
+        return api.getBillionaireById(name)
     }
 }
