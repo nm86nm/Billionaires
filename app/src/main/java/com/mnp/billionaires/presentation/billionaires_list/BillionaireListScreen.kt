@@ -16,7 +16,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.mnp.billionaires.domain.model.Billionaire
 import com.mnp.billionaires.presentation.Screen
 import com.mnp.billionaires.presentation.billionaires_list.components.BillionaireListItem
 
@@ -29,15 +28,17 @@ fun BillionaireListScreen(
     
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.billionaires){billionaire ->
+            items(state.billionaires ){billionaire ->
                 val billionaireName = billionaire.name.replace(' ', '-').lowercase()
 
-                BillionaireListItem(
-                    billionaire = billionaire,
-                    onItemClick = {
-                        navController.navigate(Screen.BillionaireDescriptionScreen.route + "/${billionaireName}")
-                    }
-                )
+                if(billionaire.id.toInt() <= 100) {
+                    BillionaireListItem(
+                        billionaire = billionaire,
+                        onItemClick = {
+                            navController.navigate(Screen.BillionaireDescriptionScreen.route + "/${billionaireName}")
+                        }
+                    )
+                }
             }
         }
         

@@ -2,6 +2,7 @@ package com.mnp.billionaires.presentation.billionaire_description
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 
 @Composable
 fun BillionaireDescriptionScreen(
@@ -28,8 +30,18 @@ fun BillionaireDescriptionScreen(
                 modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(20.dp)
             ){
-                item { 
-                    Text(text = "This is a place for description.")
+                val billionaireId= billionaire.id.lowercase().replace(' ', '-')
+                val imageUrl = "https://github.com/nm86nm/images/blob/main/$billionaireId-1.jpg?raw=true"
+
+                item {
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .aspectRatio(1f)
+                    )
+                    Text(text = billionaire.description)
                 }
             }
         }
@@ -45,7 +57,7 @@ fun BillionaireDescriptionScreen(
                     .align(Alignment.Center)
             )
         }
-        
+
         if(state.isLoading){
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
