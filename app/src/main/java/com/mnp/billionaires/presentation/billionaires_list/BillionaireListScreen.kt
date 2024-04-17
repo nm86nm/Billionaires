@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.mnp.billionaires.domain.model.Billionaire
 import com.mnp.billionaires.presentation.Screen
 import com.mnp.billionaires.presentation.billionaires_list.components.BillionaireListItem
 
@@ -28,10 +29,10 @@ fun BillionaireListScreen(
     
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.billionaires ){billionaire ->
+            items(state.billionaires.sortedBy { it.rank.toInt() }){billionaire ->
                 val billionaireName = billionaire.name.replace(' ', '-').lowercase()
 
-                if(billionaire.id.toInt() <= 100) {
+                if (billionaire.rank.toInt() <= 100) {
                     BillionaireListItem(
                         billionaire = billionaire,
                         onItemClick = {
@@ -41,7 +42,7 @@ fun BillionaireListScreen(
                 }
             }
         }
-        
+
         if (state.error.isNotBlank()){
             Text(
                 text = state.error,

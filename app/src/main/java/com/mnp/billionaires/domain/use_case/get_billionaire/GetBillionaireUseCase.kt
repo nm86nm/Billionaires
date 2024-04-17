@@ -20,9 +20,9 @@ class GetBillionaireUseCase @Inject constructor(
             val billionaire = billionaireRepository.getBillionaireById(id).toBillionaireDescription()
             emit(Resource.Success<BillionaireDescription>(billionaire))
         } catch (e: HttpException){
-            emit(Resource.Error<BillionaireDescription>("HttpException: " + e.localizedMessage))
+            emit(Resource.Error<BillionaireDescription>("Something error occured: " + e.localizedMessage))
         } catch (e: IOException){
-            emit(Resource.Error<BillionaireDescription>("IOException: " + e.localizedMessage))
+            emit(Resource.Error<BillionaireDescription>("Check internet connection."))
         }
     }
 }

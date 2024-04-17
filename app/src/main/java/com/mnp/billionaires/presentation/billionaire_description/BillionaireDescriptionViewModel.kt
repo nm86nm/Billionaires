@@ -32,7 +32,7 @@ class BillionaireDescriptionViewModel @Inject constructor(
                     _state.value = BillionaireDescriptionState(isLoading = true)
                 }
                 is Resource.Success -> {
-                    _state.value = BillionaireDescriptionState(billionaire = result.data)
+                    _state.value = BillionaireDescriptionState(billionaireDescription = result.data)
                 }
                 is Resource.Error -> {
                     _state.value = BillionaireDescriptionState(error = result.message ?: "Something wrong!")
