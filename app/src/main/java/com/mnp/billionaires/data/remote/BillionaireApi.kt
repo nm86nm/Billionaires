@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface BillionaireApi {
 
-    @GET("billionaire.json")
+    @GET("billionaire_copy2.json")
     suspend fun getBillionaires(): List<BillionaireDto>
 
     @GET("description/{name}.json")
