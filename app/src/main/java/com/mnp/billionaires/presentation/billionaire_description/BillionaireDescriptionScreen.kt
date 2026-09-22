@@ -38,7 +38,6 @@ fun BillionaireDescriptionScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         val listBillionaires = state2.billionaires
 
-        Thread.sleep(750)
         state.billionaireDescription?.let { billionaireDescription ->
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
@@ -48,10 +47,7 @@ fun BillionaireDescriptionScreen(
                 val imageUrl =
                     "https://github.com/nm86nm/images/blob/main/$billionaireId-1.jpg?raw=true"
 
-                var id = 0
-                for (i in 0 until listBillionaires.indices.last+1 step 1)
-                    if (listBillionaires[i].name == billionaireDescription.id)
-                        id = i
+                val billionaire = listBillionaires.find { it.name == billionaireDescription.id }
 
                 item {
                     AsyncImage(
@@ -65,12 +61,14 @@ fun BillionaireDescriptionScreen(
                     val height = 10
                     Spacer(modifier = Modifier.height(height.dp))
                     Divider()
-                    Text(text = "name: ${listBillionaires[id].name}")
-                    Text(text = "age: ${listBillionaires[id].age}")
-                    Text(text = "networth: ${listBillionaires[id].networth}")
-                    Text(text = "country/territory: ${listBillionaires[id].countryterritory}")
-                    Text(text = "industry ${listBillionaires[id].industry}")
-                    Text(text = "source: ${listBillionaires[id].source}")
+                    billionaire?.let {
+                        Text(text = "name: ${it.name}")
+                        Text(text = "age: ${it.age}")
+                        Text(text = "networth: ${it.networth}")
+                        Text(text = "country/territory: ${it.countryterritory}")
+                        Text(text = "industry ${it.industry}")
+                        Text(text = "source: ${it.source}")
+                    }
                     Divider()
                     Spacer(modifier = Modifier.height(height.dp))
                     Text(

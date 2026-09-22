@@ -2,6 +2,7 @@ package com.mnp.billionaires.domain.use_case.get_bilionaires
 
 import android.content.Context
 import com.mnp.billionaires.common.Resource
+import com.mnp.billionaires.data.remote.dto.ForbesBillionaireDto
 import com.mnp.billionaires.data.remote.dto.toBillionaire
 import com.mnp.billionaires.domain.model.Billionaire
 import com.mnp.billionaires.domain.repository.BillionaireRepository
@@ -20,7 +21,7 @@ class GetBillionairesUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Billionaire>>> = flow {
         try {
             emit(Resource.Loading<List<Billionaire>>())
-            val billionaires = billionaireRepository.getBillionaires().map { it.toBillionaire() }
+            val billionaires = billionaireRepository.getForbesBillionaires().personList.personsLists.map { it.toBillionaire() }
             emit(Resource.Success<List<Billionaire>>(billionaires))
         } catch (e: HttpException){
             emit(Resource.Error<List<Billionaire>>("Something error occured: " + e.localizedMessage))
