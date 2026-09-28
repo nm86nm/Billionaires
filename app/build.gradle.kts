@@ -36,6 +36,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
+        @Suppress("DEPRECATION")
         jvmTarget = "21"
     }
     buildFeatures {
